@@ -1,6 +1,10 @@
 import 'babel-polyfill';
-import serverSettings from './server-settings';
 import redis from 'redis';
+import fs from 'fs';
+import path from 'path';
+
+var configPath = path.join(__dirname, '../server-settings.json');
+var serverSettings = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 
 var client = redis.createClient(serverSettings);
 
