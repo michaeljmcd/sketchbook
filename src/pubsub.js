@@ -19,7 +19,7 @@ client.on('message', function(channel, message) {
 });
 
 client.on('subscribe', function(channel, message) {
-    publisher.set('randomKey1', 'asdf', function(channel, message) {
+    publisher.set('randomKey1', 3 ** 3, function(channel, message) {
         console.log('set randomKey1.');
     });
 });
