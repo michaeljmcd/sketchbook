@@ -13,6 +13,6 @@ client.set('randomKey1', 'some value', function(err, reply) {
 
     client.get('randomKey1', function(err, reply) {
         console.log(reply.toString());
-        process.exit()
+        process.exit();
     });
 });
