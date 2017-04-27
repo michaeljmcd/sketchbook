@@ -10,4 +10,9 @@ var client = redis.createClient(serverSettings);
 
 client.set('randomKey1', 'some value', function(err, reply) {
     console.log(reply);
+
+    client.get('randomKey1', function(err, reply) {
+        console.log(reply.toString());
+        process.exit()
+    });
 });
