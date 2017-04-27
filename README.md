@@ -8,3 +8,4 @@ Each example has been added to the scripts list.
 
 * `npm run basic`
 * `npm run promises`
+* `npm run pubsub`
