@@ -24,3 +24,27 @@ edible(crackers).
 tastes_yucky(broccoli).
 turned_off(flashlight).
 here(kitchen).
+
+list_things(Place) :-
+    location(X, Place),
+    tab(2),
+    write(X),
+    nl,
+    fail.
+list_things(_).
+
+list_connections(Place) :-
+    connect(Place, X),
+    tab(2),
+    write(X),
+    nl,
+    fail.
+list_connections(_).
+
+look :-
+    here(Place),
+    write('You are in the '), write(Place), nl,
+    write('You can see:'), nl,
+    list_things(Place),
+    write('You can go to:'),nl,
+    list_connections(Place).
