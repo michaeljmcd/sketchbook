@@ -17,6 +17,10 @@ location(broccoli, kitchen).
 location(crackers, kitchen).
 location(computer, office).
 
+location(envelope,desk).
+location(stamp,envelope).
+location(key,envelope).
+
 door(office, hall).
 door(kitchen, office).
 door(hall, 'dining room').
@@ -88,3 +92,9 @@ take_object(X) :-
     retract(location(X, _)),
     asserta(have(X)),
     write('taken'), nl.
+
+is_contained_in(T1,T2) :-
+    location(T1,T2).
+is_contained_in(T1,T2) :-
+    location(X,T2),
+    is_contained_in(T1,X).
