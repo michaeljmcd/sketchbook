@@ -1,6 +1,6 @@
 dynamic here/1.
 dynamic have/1.
-dynamic(location/2).
+dynamic(loc_list/2).
 
 room(kitchen).
 room(office).
@@ -8,18 +8,18 @@ room(hall).
 room('dining room').
 room(cellar).
 
-location(desk, office).
-location(apple, kitchen).
-location(flashlight, desk).
-location('washing machine', cellar).
-location(nani, 'washing machine').
-location(broccoli, kitchen).
-location(crackers, kitchen).
-location(computer, office).
+loc_list([desk], office).
 
-location(envelope,desk).
-location(stamp,envelope).
-location(key,envelope).
+append([], X, X).
+append([H|T1],X,[H|T2) :- append(T1,X,T2).
+
+location(X,Y) :-
+    loc_list(List, Y),
+    member(X, List).
+
+add_thing(NewThing, Container, NewList) :-
+    loc_list(OldList, Container),
+    NewList = [NewThing|OldList].
 
 door(office, hall).
 door(kitchen, office).
@@ -98,10 +98,3 @@ is_contained_in(T1,T2) :-
 is_contained_in(T1,T2) :-
     location(X,T2),
     is_contained_in(T1,X).
-
-command_loop :-
-    repeat,
-    write('Enter command (end to exit): '),
-    read(X),
-    write(X), nl,
-    X = end.
