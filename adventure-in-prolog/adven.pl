@@ -99,6 +99,8 @@ is_contained_in(T1,T2) :-
     location(X,T2),
     is_contained_in(T1,X).
 
+do(goto(X)) :- goto(X),!.
+
 command_loop :-
     repeat,
     write('Enter command (end to exit): '),
