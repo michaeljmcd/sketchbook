@@ -102,8 +102,10 @@ is_contained_in(T1,T2) :-
 do(goto(X)) :- goto(X),!.
 
 command_loop :-
+    write('Welcome to Nani Search'), nl
     repeat,
-    write('Enter command (end to exit): '),
+    write('>nani> '),
     read(X),
-    write(X), nl,
-    X = end.
+    puzzle(X),
+    do(X), nl,
+    end_condition(X).
