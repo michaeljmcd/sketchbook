@@ -102,7 +102,7 @@ is_contained_in(T1,T2) :-
 do(goto(X)) :- goto(X),!.
 
 command_loop :-
-    write('Welcome to Nani Search'), nl
+    write('Welcome to Nani Search'), nl,
     repeat,
     write('>nani> '),
     read(X),
