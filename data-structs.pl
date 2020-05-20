@@ -2,6 +2,10 @@
 % and the heap itself to be bheap(Size, [Node])
 % make-bheap([H|T]) :-
 
+module('data-structs', [pq/1,
+pq/2,pq/3, pq_insert/3
+]).
+
 % n(Priority, Data)
 n(_, _).
 
@@ -58,7 +62,7 @@ pq_binsert(NewValue, pq(Root, Left), Result) :-
     NewValue < Root,
     Result = pq(NewValue, pq(NewValue), Left).
 
-pq_binsert(NewValue, pq(Root, Left = pq(N1, _, _), Right = pq(N2, _, _)), Result) :-
+pq_binsert(NewValue, pq(Root, Left = pq(_, _, _), Right = pq(_, _, _)), Result) :-
     (pq_binsert(NewValue, Left, NewLeft = pq(NL, LL, LR)),
      NL < Root -> Result = pq(NL, pq(Root, LL, LR), Right) ;
         Result = pq(Root, NewLeft, Right)).
@@ -76,3 +80,19 @@ pq_linsert(NewValue, pq(Root, Right), Result) :-
 pq_linsert(NewValue, pq(Root, Left, Right), Result) :-
     pq_linsert(NewValue, Left, NewLeft),
     Result = pq(Root, NewLeft, Right).
+
+:- begin_tests('pq').
+
+test(insert_empty) :- 
+    pq_insert(100, pq(nil), X),
+    X = pq(100).
+
+test(insert_single_node) :-
+    pq_insert(50, pq(100), Y),
+    Y = pq(50, pq(100)).
+
+test(pq_insert_unbalanced) :-
+    pq_insert(100, pq(50, pq(20)), X),
+    X = pq(50, pq(20), pq(100)).
+
+:- end_tests('pq').
